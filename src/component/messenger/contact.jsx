@@ -15,6 +15,19 @@ class Contact extends React.Component {
                 this.props.dispatch(getConvId(this.props.convid))
                 this.props.dispatch(getUserName(this.props.firstName))
             })
+        let formdata = new FormData()
+        formdata.append('token',window.localStorage.getItem('token'))
+        formdata.append('conversation_id',this.props.convid)
+        this.interval =setInterval(()=>{
+            axios.post('https://api.paywith.click/conversation/seen/',formdata)
+                .then((response)=>{
+                    console.log(response)
+                })
+        },3000)
+
+    }
+    componentWillUnmount() {
+        clearInterval(this.interval)
     }
 
     render() {
