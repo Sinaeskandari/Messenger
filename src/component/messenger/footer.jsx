@@ -5,8 +5,7 @@ class Footer extends React.Component {
     constructor() {
         super()
         this.state = {
-            newMessage: '',
-            rerender:''
+            newMessage: ''
         }
     }
 
@@ -18,7 +17,6 @@ class Footer extends React.Component {
         axios.post('https://api.paywith.click/conversation/create/', fdata)
             .then((response) => {
                 console.log(response)
-                this.forceUpdate()
             })
     }
 
