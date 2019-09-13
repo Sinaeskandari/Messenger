@@ -2,6 +2,7 @@ import React from 'react'
 import PersistentDrawerLeft from '../ui/drawrer'
 import ContactListContainer from '../../container/contactListContainer'
 import ChatPage from './chatPage'
+import NoChat from "./noChat";
 
 class Messenger extends React.Component {
     render() {
@@ -10,7 +11,11 @@ class Messenger extends React.Component {
                 <PersistentDrawerLeft id='drawer'/>
                 <div className='Messenger_Container'>
                     <ContactListContainer/>
-                    <ChatPage/>
+                    {this.props.convid === -1 ? (
+                        <NoChat/>
+                    ) : (
+                        <ChatPage/>
+                    )}
                 </div>
             </div>
         )

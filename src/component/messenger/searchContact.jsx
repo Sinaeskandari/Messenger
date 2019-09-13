@@ -41,12 +41,12 @@ class SearchContact extends React.Component{
     render() {
         return(
             <div className="searchContact">
-                <input className='input-login' type="text" onChange={(e)=>this.handleSearch(e)}/>
+                <input className='input-login' id='input-search' type="text" placeholder="Search users" onChange={(e)=>this.handleSearch(e)}/>
                 {
                     this.state.suggestionUsers.map((user, index) => {
                         let id = user.id
                         return (
-                            <p key={index} onClick={()=>this.handleConversationRequest(id)}>
+                            <p key={index} className='p-search' onClick={()=>this.handleConversationRequest(id)}>
                                 {user.email}
                             </p>
                         )

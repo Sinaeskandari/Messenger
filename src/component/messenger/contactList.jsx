@@ -14,7 +14,7 @@ class ContactList extends React.Component {
     }
 
     componentDidMount() {
-        let latest_date=0
+        let latest_date = 0
         axios.get('https://api.paywith.click/conversation/', {
             params: {
                 token: window.localStorage.getItem('token')
@@ -22,7 +22,7 @@ class ContactList extends React.Component {
         })
             .then((response) => {
                 this.props.dispatch(saveDataFromServer(response.data.data.conversation_details))
-                latest_date=response.data.data.conversation_details[0].latest_message_date
+                latest_date = response.data.data.conversation_details[0].latest_message_date
             })
             .catch(function (error) {
                 console.log(error)
@@ -32,7 +32,7 @@ class ContactList extends React.Component {
         fdata.append('date', latest_date)
         setInterval(() => {
             axios.post('https://api.paywith.click/conversation/update/', fdata)
-        }, 30000)
+        }, 3000)
     }
 
     render() {
@@ -49,7 +49,7 @@ class ContactList extends React.Component {
                                         firstName={user.email}
                                         lastName={conversation.lastName}
                                         latestMessage={conversation.latestMessage}
-                                        unseenMessage={conversation.unseenMessage}
+                                        unseenMessage={conversation.unseen_messages[this.state.myId]}
                                         convid={conversation.id}
                                     />
                                 )

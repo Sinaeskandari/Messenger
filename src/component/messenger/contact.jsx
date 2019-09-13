@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Avatar from '@material-ui/core/Avatar'
 import {getConvId, getMessageFromServer, getUserName} from '../../action/conversation'
 
 class Contact extends React.Component {
@@ -16,24 +17,32 @@ class Contact extends React.Component {
                 this.props.dispatch(getUserName(this.props.firstName))
             })
         let formdata = new FormData()
-        formdata.append('token',window.localStorage.getItem('token'))
-        formdata.append('conversation_id',this.props.convid)
-        this.interval =setInterval(()=>{
-            axios.post('https://api.paywith.click/conversation/seen/',formdata)
-                .then((response)=>{
-                    console.log(response)
-                })
-        },3000)
+        formdata.append('token', window.localStorage.getItem('token'))
+        formdata.append('conversation_id', this.props.convid)
+        this.interval = setInterval(() => {
+            axios.post('https://api.paywith.click/conversation/seen/', formdata)
+        }, 3000)
 
     }
+
     componentWillUnmount() {
         clearInterval(this.interval)
     }
+
+    colorChooser = () => {
+        let colors = ['#c63e29', '#9C27B0', '#03A9F4', '#009688', '#e91e63', '#ff9800', '#ff6f00', '#004d40']
+        let index = Math.floor(Math.random() * colors.length)
+        return colors[index]
+    };
 
     render() {
         return (
             <div className='contact' onClick={() => this.handleRequestMessageList()}>
                 <div style={{display: 'flex'}}>
+                    <Avatar style={{
+                        backgroundColor: this.colorChooser(),
+                        fontSize: '14px'
+                    }}>{this.props.firstName[0].toUpperCase()}</Avatar>
                     <div style={{
                         alignSelf: 'center',
                         marginLeft: '3%'

@@ -2,7 +2,7 @@ const initial = {
     firstName: '',
     lastName: '',
     contacts: [],
-    convid: '',
+    convid: -1,
     messages: []
 }
 

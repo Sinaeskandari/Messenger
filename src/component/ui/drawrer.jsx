@@ -107,10 +107,11 @@ export default function PersistentDrawerLeft() {
             onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
+            style={{color:'#a7ce0c'}}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap style={{color:'#a7ce0c'}}>
             Pine Messenger
           </Typography>
         </Toolbar>

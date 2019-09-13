@@ -15,9 +15,6 @@ class Footer extends React.Component {
         fdata.append('conversation_id', this.props.convid)
         fdata.append('text', this.state.newMessage)
         axios.post('https://api.paywith.click/conversation/create/', fdata)
-            .then((response) => {
-                console.log(response)
-            })
     }
 
     render() {
